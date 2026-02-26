@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Grafo de Cursos — CINS</title>
 
-  <!-- vis-network -->
   <link rel="stylesheet" href="https://unpkg.com/vis-network/styles/vis-network.min.css">
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -16,14 +15,14 @@
       <div class="dot"></div>
       <div>
         <div class="title">Grafo de Cursos — CINS</div>
-        <div class="subtitle">Click en un curso para ver Sumilla y Temas · Zoom/Drag habilitado</div>
+        <div class="subtitle">Click en un curso para ver detalle · Arrastra nodos libremente · Zoom/Drag</div>
       </div>
     </div>
 
     <div class="actions">
       <input
         id="search"
-        name="search_courses_v1"
+        name="search_courses_v2"
         type="search"
         placeholder="Buscar por código o nombre…"
         autocomplete="new-password"
@@ -31,6 +30,7 @@
         autocorrect="off"
         spellcheck="false"
       />
+      <button id="layoutBtn" type="button">Re-organizar</button>
       <button id="fitBtn" type="button">Ajustar vista</button>
       <button id="resetBtn" type="button">Reset</button>
     </div>
@@ -40,7 +40,7 @@
     <section class="canvas">
       <div id="network"></div>
       <div class="hint">
-        <strong>Tip:</strong> rueda del mouse para zoom · arrastra el lienzo para mover · arrastra nodos para ordenar.
+        <strong>Tip:</strong> arrastra nodos para acomodar · arrastra el lienzo para mover · rueda para zoom.
       </div>
     </section>
 
@@ -61,8 +61,11 @@
           <div class="k">Créditos</div>
           <div id="pCredits" class="v">—</div>
 
-          <div class="k">Predecesoras</div>
+          <div class="k">Predecesoras directas</div>
           <div id="pPred" class="v">—</div>
+
+          <div class="k">Grupo (dependencia)</div>
+          <div id="pGroup" class="v">—</div>
         </div>
 
         <hr>
@@ -80,11 +83,18 @@
         <hr>
 
         <div class="section">
-          <div class="section-title">Secuencia sugerida (topológica)</div>
-          <ol id="pOrder" class="order"></ol>
-          <div class="note">
-            * Solo considera dependencias entre cursos presentes en la currícula.
-          </div>
+          <div class="section-title">Ruta sugerida para llegar a este curso (topológica del subgrafo)</div>
+          <ol id="pOrderNeed" class="order"></ol>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Cursos que habilita (descendientes, topológico)</div>
+          <ol id="pOrderEnable" class="order"></ol>
+        </div>
+
+        <div class="note">
+          * Dependencias: solo códigos presentes en la currícula CINS (según tu matriz).<br>
+          * “Grupo” se calcula desde los cursos raíz (inicio) para separar islas.
         </div>
       </div>
     </aside>
