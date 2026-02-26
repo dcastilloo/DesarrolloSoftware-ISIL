@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grafo de Cursos (CINS) — Secuencia Sugerida</title>
+
+  <!-- vis-network -->
+  <link rel="stylesheet" href="https://unpkg.com/vis-network/styles/vis-network.min.css">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="dot"></div>
+      <div>
+        <div class="title">Grafo de Cursos — CINS</div>
+        <div class="subtitle">Click en un curso para ver Sumilla y Temas · Zoom/Drag habilitado</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <input id="search" type="search" placeholder="Buscar por código o nombre…">
+      <button id="fitBtn" type="button">Ajustar vista</button>
+      <button id="resetBtn" type="button">Reset</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="canvas">
+      <div id="network"></div>
+      <div class="hint">
+        <strong>Tip:</strong> rueda del mouse para zoom · arrastra el lienzo para mover · arrastra nodos para ordenar.
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Detalle del curso</div>
+        <div id="badge" class="badge">—</div>
+      </div>
+
+      <div class="panel-body">
+        <div class="kv">
+          <div class="k">Código</div>
+          <div id="pCode" class="v">—</div>
+
+          <div class="k">Curso</div>
+          <div id="pName" class="v">—</div>
+
+          <div class="k">Créditos</div>
+          <div id="pCredits" class="v">—</div>
+
+          <div class="k">Predecesoras</div>
+          <div id="pPred" class="v">—</div>
+        </div>
+
+        <hr>
+
+        <div class="section">
+          <div class="section-title">Sumilla</div>
+          <pre id="pSumilla" class="pre">Selecciona un nodo…</pre>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Temas</div>
+          <pre id="pTemas" class="pre">Selecciona un nodo…</pre>
+        </div>
+
+        <hr>
+
+        <div class="section">
+          <div class="section-title">Secuencia sugerida (topológica)</div>
+          <ol id="pOrder" class="order"></ol>
+          <div class="note">
+            * Si hay recomendaciones cruzadas/no incluidas en el dataset, la lista puede contener placeholders.
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
