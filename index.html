@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Grafo de Cursos (CINS) — Secuencia Sugerida</title>
+  <title>Grafo de Cursos — CINS</title>
 
   <!-- vis-network -->
   <link rel="stylesheet" href="https://unpkg.com/vis-network/styles/vis-network.min.css">
-
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header class="topbar">
     <div class="brand">
@@ -31,6 +31,8 @@
         autocorrect="off"
         spellcheck="false"
       />
+      <button id="fitBtn" type="button">Ajustar vista</button>
+      <button id="resetBtn" type="button">Reset</button>
     </div>
   </header>
 
@@ -81,7 +83,7 @@
           <div class="section-title">Secuencia sugerida (topológica)</div>
           <ol id="pOrder" class="order"></ol>
           <div class="note">
-            * Si hay recomendaciones cruzadas/no incluidas en el dataset, la lista puede contener placeholders.
+            * Solo considera dependencias entre cursos presentes en la currícula.
           </div>
         </div>
       </div>
