@@ -60,7 +60,7 @@ body{
 
 .layout{
   display:grid;
-  grid-template-columns: 2fr 1fr; /* <- 1/3 para panel */
+  grid-template-columns: 2fr 1fr; /* panel = 1/3 */
   gap:14px;
   padding:14px;
   height: calc(100vh - 62px);
